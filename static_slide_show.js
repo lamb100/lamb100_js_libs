@@ -13,6 +13,12 @@ var aryStaticSlideIndex = new Array();
  * @var	array
  */
 var aryIntervals = array();
+/**
+ * 固定式跑馬燈
+ * @param strSelector string	指定要置換的
+ * @param aryImages
+ * @returns {Boolean}
+ */
 function	StaticSlideShow( strSelector , aryImages )
 {
 	//判斷是否有截入jQuery
@@ -44,10 +50,14 @@ function	StaticSlideShow( strSelector , aryImages )
 	//設定的週期指令
 	aryIntervals[strSelector] = window.setInterval( function()
 	{
-		jQuery( strSelector ).attr( 'src' , aryImages[aryStaticSlideIndex[strSelector]] );
+		if( jQuery( strSelector ).prop( "tagName" ).match( /^img$/i ) )
+		{
+			jQuery( strSelector ).attr( 'src' , aryImages[aryStaticSlideIndex[strSelector]] );
+		}
 		aryStaticSlideIndex[strSelector]++;
 		aryStaticSlideIndex[strSelector] = aryStaticSlideIndex[strSelector] % aryImages.length;
 	}, intStaticSlideTimer * 2000 );
+	return	true;
 }
 
 function	ImagePreload( aryImages )
