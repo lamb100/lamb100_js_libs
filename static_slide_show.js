@@ -59,7 +59,10 @@ function	StaticSlideShow( strSelector , aryImages )
 	}, intStaticSlideTimer * 2000 );
 	return	true;
 }
-
+/**
+ * 預先載入圖進到本機端的CACHE
+ * @param aryImages	array	一堆圖的網址
+ */
 function	ImagePreload( aryImages )
 {
 	if( ! ( typeof aryImages ).match( /^array$/i ) )
